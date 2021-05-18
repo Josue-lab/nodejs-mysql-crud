@@ -1,0 +1,29 @@
+global:
+  scrape_interval: 15s
+  
+scrape_configs:
+     
+  - job_name: prometheus 
+#    metrics_path: "/metrics"     
+    static_configs: 
+      - targets: ['localhost:9090']
+    metric_relabel_configs:
+#      - source_labels: [__name__]
+#        regex: '.+'
+#        action: replace
+#        target_label: instance
+#        replacement: myinstance
+      - source_labels: [ instance ]
+        separator: ;
+        regex: (.+)
+        action: replace
+        replacement: $1 
+        target_label: myinstance 
+           
+
+  - job_name: cadvisor
+    static_configs:
+      - targets: ['172.24.0.6:8080']
+        labels:
+          variable: cadvisor
+          

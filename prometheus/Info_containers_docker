@@ -1,0 +1,39 @@
+Prometheus contenedore
+docker run -d \
+    -p 9090:9090 \
+    --rm \
+    --name prometheus \
+    --network app-app-mysql \
+    -v /home/josue/Documents/app_mysql/nodejs-mysql-crud/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml \
+    prom/prometheus
+    
+    
+Información de cadvisor para obtener información de los contenedores
+    
+    image: gcr.io/cadvisor/cadvisor:latest
+    container_name: cadvisor
+    ports:
+    - 8080:8080
+    volumes:
+    - /:/rootfs:ro
+    - /var/run:/var/run:rw
+    - /sys:/sys:ro
+    - /var/lib/docker/:/var/lib/docker:ro
+    
+Prometheus, necesito la ip del contenedor para conectarlo como la base de datos de grafana    
+docker run -d -p 8090:8090 \ 
+    --network app-app-mysql \
+    -v /:/rootfs:ro \
+    -v /var/run:/var/run:rw \
+    -v /sys:/sys:ro \
+    -v /var/lib/docker/:/var/lib/docker:ro \
+    gcr.io/cadvisor/cadvisor:latest 
+    
+
+    
+    
+    
+    
+    
+    
+      
