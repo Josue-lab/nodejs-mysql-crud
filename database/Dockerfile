@@ -1,5 +1,5 @@
 FROM mysql:5.7
-#New comment to trigger Jenkins2
+#New comment to trigger Jenkins3
 ENV MYSQL_ROOT_PASSWORD=admin 
 ENV MYSQL_USER=paystand
 ENV MYSQL_PASSWORD=paystand
